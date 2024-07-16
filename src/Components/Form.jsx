@@ -79,7 +79,7 @@ const Form = () => {
     navigate("/form")
   };
   const filterOption = (option, rawInput) => {
-    // Case-insensitive matching that only displays options that start with the input
+    // Case-insensitive matching that only displays options that start with the input value entered by user
     return option.label.toLowerCase().startsWith(rawInput.toLowerCase());
   };
 
@@ -120,8 +120,7 @@ const Form = () => {
           isClearable
           isSearchable
           filterOption={filterOption}
-          className="basic-single"
-          classNamePrefix="select"
+          
         />
       </div>
       <div className="form-group mb-4">
@@ -136,8 +135,7 @@ const Form = () => {
           isSearchable
           filterOption={filterOption}
           isDisabled={citesList.length === 0}
-          className="basic-single"
-          classNamePrefix="select"
+          
         />
       </div>
       <button
