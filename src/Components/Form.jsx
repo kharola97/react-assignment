@@ -1,8 +1,21 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Select from 'react-select';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
+
+const errorToast = (message) => {
+  toast.error(message, {
+    position: 'top-right',
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
+};
 
 const Form = () => {
   const navigate = useNavigate();
@@ -75,6 +88,10 @@ const Form = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form, "form");
+    if(form.country === "" || form.city === ""){
+      errorToast("Please select country and city to proceed")
+      return;
+    }
     localStorage.setItem('formData', JSON.stringify(form));
     navigate("/form")
   };
@@ -145,7 +162,7 @@ const Form = () => {
         Submit
       </button>
     </form>
-    
+    <ToastContainer/>
   </div>
   );
 };
